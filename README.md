@@ -1,2 +1,2 @@
 # EZCipher
-A homemade useful cipher
+A homemade convenient cipher
