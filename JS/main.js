@@ -1,8 +1,6 @@
 // Sascha-T created this file
 
-// Keychain
-var symKeysX = [4, 9, 5, 6, 18]
-var toEncryptX = "Hallo!"
+// SymKey from Array of Numbers
 function getSymKeyFromArray(symKeys) {
   var SymKey = symKeys[0];
   symKeys.shift();
@@ -11,25 +9,24 @@ function getSymKeyFromArray(symKeys) {
   });
   return SymKey;
 }
+// Random
 function random(min, max) {
     return Math.random() * (max - min) + min;
 }
+// Generate Keychain
 function genKeyChain(strength) {
     var KeyChain = [];
     while(strength > 0) {
         var e = random(1, 15);
         KeyChain.push(Math.round(e))
-        console.log(Math.round(e))
         strength = strength - 1
     }
     return KeyChain
 }
-// var symKeyX = getSymKeyX(symKeysX)
-var symKeyX = getSymKeyFromArray(genKeyChain(3))
-console.log(symKeyX)
-// Do the magic
-function encrypt(toEncrypt, symKey) {
-    var final = "";
+
+// ENCRYPTION
+function encryptString(toEncrypt, symKey) {
+    var output = "";
     var encrypted = [];
     var chars = [];
     var i = 0;
@@ -42,14 +39,15 @@ function encrypt(toEncrypt, symKey) {
     });
     var iX = 0;
     encrypted.forEach(function(element) {
-        final = final + element + ":"
+        output = output + element + ":"
         iX++;
     });
-    final = final.substring(0, final.length - 1);
-    return final;
+    output = output.substring(0, output.length - 1);
+    return output;
 
 }
-function decrypt(encrypted, symKey) {
+// DECRYPTION
+function decryptString(encrypted, symKey) {
     var encryptedArray = encrypted.split(":")
     var decryptedAscii = [];
     var decrypted = "";
@@ -61,6 +59,15 @@ function decrypt(encrypted, symKey) {
     });
     return decrypted;
 }
-var b = encrypt(toEncryptX, symKeyX)
-console.log(b)
-console.log(decrypt(b, symKeyX))
+// CREATION OF KEY AUTOMATED 
+function createKey(strength) {
+   var keyChain = genKeyChain(strength);
+   return getSymKeyFromArray(keyChain);
+}
+// Module Export
+module.exports = {}
+module.exports.encrypt = encryptString
+module.exports.decrypt = decryptString
+module.exports.keychainGen = genKeyChain
+module.exports.getKey = getSymKeyFromArray
+module.exports.makeKey = createKey
