@@ -19,7 +19,6 @@ function genKeyChain(strength) {
     while(strength > 0) {
         var e = random(1, 15);
         KeyChain.push(Math.round(e))
-        console.log(Math.round(e))
         strength = strength - 1
     }
     return KeyChain
@@ -27,7 +26,7 @@ function genKeyChain(strength) {
 
 // ENCRYPTION
 function encryptString(toEncrypt, symKey) {
-    var final = "";
+    var output = "";
     var encrypted = [];
     var chars = [];
     var i = 0;
@@ -40,11 +39,11 @@ function encryptString(toEncrypt, symKey) {
     });
     var iX = 0;
     encrypted.forEach(function(element) {
-        final = final + element + ":"
+        output = output + element + ":"
         iX++;
     });
-    final = final.substring(0, final.length - 1);
-    return final;
+    output = output.substring(0, output.length - 1);
+    return output;
 
 }
 // DECRYPTION
@@ -62,7 +61,7 @@ function decryptString(encrypted, symKey) {
 }
 // CREATION OF KEY AUTOMATED 
 function createKey(strength) {
-   var keyChain = genKeyChain(stength);
+   var keyChain = genKeyChain(strength);
    return getSymKeyFromArray(keyChain);
 }
 // Module Export
