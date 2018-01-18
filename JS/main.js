@@ -60,7 +60,15 @@ function decryptString(encrypted, symKey) {
     });
     return decrypted;
 }
+// CREATION OF KEY AUTOMATED 
+function createKey(strength) {
+   var keyChain = genKeyChain(stength);
+   return getSymKeyFromArray(keyChain);
+}
 // Module Export
 module.exports = {}
 module.exports.encrypt = encryptString
 module.exports.decrypt = decryptString
+module.exports.keychainGen = genKeyChain
+module.exports.getKey = getSymKeyFromArray
+module.exports.makeKey = createKey
