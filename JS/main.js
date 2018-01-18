@@ -1,8 +1,6 @@
 // Sascha-T created this file
 
-// Keychain
-var symKeysX = [4, 9, 5, 6, 18]
-var toEncryptX = "Hallo!"
+// SymKey from Array of Numbers
 function getSymKeyFromArray(symKeys) {
   var SymKey = symKeys[0];
   symKeys.shift();
@@ -11,9 +9,11 @@ function getSymKeyFromArray(symKeys) {
   });
   return SymKey;
 }
+// Random
 function random(min, max) {
     return Math.random() * (max - min) + min;
 }
+// Generate Keychain
 function genKeyChain(strength) {
     var KeyChain = [];
     while(strength > 0) {
@@ -24,11 +24,9 @@ function genKeyChain(strength) {
     }
     return KeyChain
 }
-// var symKeyX = getSymKeyX(symKeysX)
-var symKeyX = getSymKeyFromArray(genKeyChain(3))
-console.log(symKeyX)
-// Do the magic
-function encrypt(toEncrypt, symKey) {
+
+// ENCRYPTION
+function encryptString(toEncrypt, symKey) {
     var final = "";
     var encrypted = [];
     var chars = [];
@@ -49,7 +47,8 @@ function encrypt(toEncrypt, symKey) {
     return final;
 
 }
-function decrypt(encrypted, symKey) {
+// DECRYPTION
+function decryptString(encrypted, symKey) {
     var encryptedArray = encrypted.split(":")
     var decryptedAscii = [];
     var decrypted = "";
@@ -61,6 +60,7 @@ function decrypt(encrypted, symKey) {
     });
     return decrypted;
 }
-var b = encrypt(toEncryptX, symKeyX)
-console.log(b)
-console.log(decrypt(b, symKeyX))
+// Module Export
+module.exports = {}
+module.exports.encrypt = encryptString
+module.exports.decrypt = decryptString
