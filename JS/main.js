@@ -1,5 +1,3 @@
-// Sascha-T created this file
-
 // SymKey from Array of Numbers
 function getSymKeyFromArray(symKeys) {
   var SymKey = symKeys[0];
