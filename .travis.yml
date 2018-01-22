@@ -1,16 +1,15 @@
 dist: trusty
 sudo: required
-env:
-  - TRAVIS=true
-language: node_js
+language:               node_js
 node_js:
     - "node"
     - "lts/*"
-    - "9"
+    - "7"
+    - "8"
 before_install:
     - npm install -g npm@latest
     - npm install -g eye.js
-install:
-    - npm install
 script:
     - eye
+notifications:
+	email: false
