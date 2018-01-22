@@ -7,11 +7,12 @@ node_js:
     - "node"
     - "lts/*"
     - "7"
-	- "8"
+    - "8"
 before_install:
     - npm install -g npm@latest
     - npm install -g eye.js
 install:
-	- npm install
+    - npm install
 script:
-	- eye
+    - cd JS
+    - eye
