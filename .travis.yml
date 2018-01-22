@@ -14,5 +14,4 @@ before_install:
 install:
     - npm install
 script:
-    - cd JS
     - eye
