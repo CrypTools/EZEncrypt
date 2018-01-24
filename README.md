@@ -1,4 +1,4 @@
 # EZCipher
 A homemade convenient cipher
 
-README coming soon
+README coming soon!
