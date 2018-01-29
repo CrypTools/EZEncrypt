@@ -1,11 +1,23 @@
+/***********NodeJS*************
+
+
+const ez = require("./lib")
+
+ez.encrypt("Hello", 10)
+=> "720:1010:1080:1080:1110"
+ez.decrypt("720:1010:1080:1080:1110", 10)
+=> "Hello"
+
+
+******************************/
 // SymKey from Array of Numbers
 function getSymKeyFromArray(symKeys) {
-  var SymKey = symKeys[0];
-  symKeys.shift();
-  symKeys.forEach(function(element) {
-      SymKey = SymKey * parseInt(element)
-  });
-  return SymKey;
+    let SymKey = symKeys[0];
+    symKeys.shift();
+    symKeys.forEach(element => {
+        SymKey = SymKey * parseInt(element)
+    });
+    return SymKey;
 }
 // Random
 function random(min, max) {
@@ -13,9 +25,9 @@ function random(min, max) {
 }
 // Generate Keychain
 function genKeyChain(strength) {
-    var KeyChain = [];
-    while(strength > 0) {
-        var e = random(1, 15);
+    const KeyChain = [];
+    while (strength > 0) {
+        const e = random(1, 15);
         KeyChain.push(Math.round(e))
         strength = strength - 1
     }
@@ -24,20 +36,20 @@ function genKeyChain(strength) {
 
 // ENCRYPTION
 function encryptString(toEncrypt, symKey) {
-    var output = "";
-    var encrypted = [];
-    var chars = [];
-    var i = 0;
-    toEncrypt.split("").forEach(function(element) {
+    let output = "";
+    const encrypted = [];
+    const chars = [];
+    let i = 0;
+    toEncrypt.split("").forEach(element => {
         chars.push(element.charCodeAt());
         i++;
     });
-    chars.forEach(function(element) {
+    chars.forEach(element => {
         encrypted.push(parseInt(element) * symKey)
     });
-    var iX = 0;
-    encrypted.forEach(function(element) {
-        output = output + element + ":"
+    let iX = 0;
+    encrypted.forEach(element => {
+        output = `${output + element}:`
         iX++;
     });
     output = output.substring(0, output.length - 1);
@@ -46,23 +58,23 @@ function encryptString(toEncrypt, symKey) {
 }
 // DECRYPTION
 function decryptString(encrypted, symKey) {
-    var encryptedArray = encrypted.split(":")
-    var decryptedAscii = [];
-    var decrypted = "";
-    encryptedArray.forEach(function(element) {
+    const encryptedArray = encrypted.split(":");
+    const decryptedAscii = [];
+    let decrypted = "";
+    encryptedArray.forEach(element => {
         decryptedAscii.push(element / symKey)
     });
-    decryptedAscii.forEach(function(element) {
+    decryptedAscii.forEach(element => {
         decrypted = decrypted + String.fromCharCode(parseInt(element))
     });
     return decrypted;
 }
-// CREATION OF KEY AUTOMATED 
+// CREATION OF KEY AUTOMATED
 function createKey(strength) {
-   var keyChain = genKeyChain(strength);
-   return getSymKeyFromArray(keyChain);
+    const keyChain = genKeyChain(strength);
+    return getSymKeyFromArray(keyChain);
 }
-// Module Export
+
 module.exports = {}
 module.exports.encrypt = encryptString
 module.exports.decrypt = decryptString
