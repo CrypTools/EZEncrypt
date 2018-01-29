@@ -1,4 +1,4 @@
-const cryptoX = require(`${__testDir}/../main.js`);
+const cryptoX = require(`${__testDir}/../lib.js`);
 //if(process.env.TRAVIS === "true") {
 const EncryptionText = "Hello";
 const encryptedText = cryptoX.encrypt(EncryptionText, 10);
