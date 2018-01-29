@@ -69,17 +69,15 @@ function decryptString(encrypted, symKey) {
     });
     return decrypted;
 }
-// CREATION OF KEY AUTOMATED 
+// CREATION OF KEY AUTOMATED
 function createKey(strength) {
     const keyChain = genKeyChain(strength);
     return getSymKeyFromArray(keyChain);
 }
 
-// Module Export
-export default {};
-
-export {encryptString as encrypt};
-export {decryptString as decrypt};
-export {genKeyChain as keychainGen};
-export {getSymKeyFromArray as getKey};
-export {createKey as makeKey};
+module.exports = {}
+module.exports.encrypt = encryptString
+module.exports.decrypt = decryptString
+module.exports.keychainGen = genKeyChain
+module.exports.getKey = getSymKeyFromArray
+module.exports.makeKey = createKey

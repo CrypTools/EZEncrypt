@@ -1,5 +1,4 @@
 const cryptoX = require(`${__testDir}/../lib.js`);
-//if(process.env.TRAVIS === "true") {
 const EncryptionText = "Hello";
 const encryptedText = cryptoX.encrypt(EncryptionText, 10);
 const expectedText = "720:1010:1080:1080:1110";
